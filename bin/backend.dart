@@ -1,6 +1,6 @@
 import 'package:shelf/shelf.dart';
 import 'apis/login/login_api.dart';
-import 'apis/store_api.dart';
+import 'apis/store/store_api.dart';
 import 'infra/custom_server.dart';
 
 Future<void> main() async {

@@ -1,23 +1,26 @@
 import 'dart:convert';
 
 class ProductModel {
-  final String name;
   final int id;
-  final int stock_quantity;
+  final String name;
+  final int stockQuantity;
+  // final DateTime created;
 
   ProductModel({
-    required this.name,
     required this.id,
-    required this.stock_quantity,
+    required this.name,
+    required this.stockQuantity,
+    // required this.created,
   });
 
   String toJson() => jsonEncode(toMap());
 
   Map<String, dynamic> toMap() {
     return {
-      'name': name,
       'id': id,
-      'stockQuantity': stock_quantity,
+      'name': name,
+      'stock_quantity': stockQuantity,
+      // 'created': created,
     };
   }
 }

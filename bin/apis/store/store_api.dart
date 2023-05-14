@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
-import '../models/product_model.dart';
+import '../../models/product_model.dart';
 
 class StoreApi {
   Handler get handler {
@@ -12,11 +12,12 @@ class StoreApi {
 
     router.get('$baseApi/products', (Request request) {
       List<ProductModel> listProduct = [
-        ProductModel(name: "name1", id: 1, stock_quantity: 10),
-        ProductModel(name: "name2", id: 2, stock_quantity: 20),
-        ProductModel(name: "name3", id: 3, stock_quantity: 30),
+        ProductModel(name: "name1", id: 1, stockQuantity: 10),
+        ProductModel(name: "name2", id: 2, stockQuantity: 20),
+        ProductModel(name: "name3", id: 3, stockQuantity: 30),
       ];
 
+      print(jsonEncode(listProduct));
       return Response.ok(jsonEncode(listProduct), headers: {
         'content-type': 'application/json',
       });
@@ -36,9 +37,10 @@ class StoreApi {
 
     router.delete('$baseApi/delete', (Request request) {
       String? id = request.url.queryParameters['id'];
-      if (id == null || id.isEmpty) return Response.badRequest(body: 'Invalid Operation');
+      if (id == null || id.isEmpty)
+        return Response.badRequest(body: 'Invalid Operation');
       else
-      return Response.ok('empty');
+        return Response.ok('empty');
     });
 
     return router;
