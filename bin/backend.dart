@@ -5,10 +5,9 @@ import 'api/store_api.dart';
 import 'infra/custom_server.dart';
 
 Future<void> main() async {
-  var cascadeHandler = Cascade()
-      .add(LoginApi().handler)
-      .add(StoreApi().handler)
-      .handler;
+  var cascadeHandler = Cascade().add(LoginApi().handler).add(StoreApi().handler).handler;
 
-  await CustomServer().initialize(cascadeHandler);
+  var handler = Pipeline().addMiddleware(logRequests()).addHandler(cascadeHandler);
+
+  await CustomServer().initialize(handler: handler, address: 'localhost', port: 8080);
 }

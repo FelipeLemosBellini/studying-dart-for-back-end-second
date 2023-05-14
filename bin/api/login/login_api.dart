@@ -5,7 +5,7 @@ class LoginApi {
   Handler get handler {
     Router router = Router();
     String baseApi = '/login';
-    router.get('$baseApi/', (Request request) {
+    router.get(baseApi, (Request request) {
       return Response.ok('Login page');
     });
 
